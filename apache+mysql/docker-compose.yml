@@ -1,0 +1,21 @@
+version: '3'
+services:
+  apache:
+    build: . 
+    ports:
+      - 8080:80
+    volumes: 
+      - ./:/var/www/html
+  db:
+    image: mysql:8
+    ports: 
+      - 3306:3306
+    volumes:
+      - db_data:/var/lib/mysql
+    environment: 
+      MYSQL_ROOT_PASSWORD: suite340root
+      MYSQL_DATABASE: dbname
+      MYSQL_USER: username
+      MYSQL_PASSWORD: suite340
+volumes:
+  db_data:
