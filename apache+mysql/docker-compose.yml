@@ -15,7 +15,24 @@ services:
     environment: 
       MYSQL_ROOT_PASSWORD: suite340root
       MYSQL_DATABASE: dbname
-      MYSQL_USER: username
+      MYSQL_USER: dbuser
       MYSQL_PASSWORD: suite340
+    networks:
+      - dbadmin
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8081:80
+    volumes:
+      - /sessions
+    environment: 
+      PMA_HOST: db
+    networks:
+      - dbadmin
+
 volumes:
   db_data:
+networks:
+  dbadmin
